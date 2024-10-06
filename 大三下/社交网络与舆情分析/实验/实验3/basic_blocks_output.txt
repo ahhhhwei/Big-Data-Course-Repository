@@ -1,0 +1,604 @@
+{
+    name: '0x4003e0',
+    x: 496,
+    y: 631,
+    block: '.init_proc',
+    assemblyCode: `
+    sub     rsp, 8; _init
+    mov     rax, cs:__gmon_start___ptr
+    test    rax, rax
+    jz      short loc_4003F5
+    `,
+    successors: [
+        "0x4003f0",
+        "0x4003f5"
+    ]
+},
+{
+    name: '0x4003f0',
+    x: 268,
+    y: 756,
+    block: '',
+    assemblyCode: `
+    call    ___gmon_start__
+    `,
+    successors: [
+        "0x4003f5"
+    ]
+},
+{
+    name: '0x4003f5',
+    x: 421,
+    y: 806,
+    block: '',
+    assemblyCode: `
+    add     rsp, 8
+    retn
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '0x400400',
+    x: 324,
+    y: 330,
+    block: 'sub_400400',
+    assemblyCode: `
+    push    cs:qword_601008
+    jmp     cs:qword_601010
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '0x400410',
+    x: 321,
+    y: 796,
+    block: '.printf',
+    assemblyCode: `
+    jmp     cs:off_601018
+    `,
+    successors: [
+        "0x601040"
+    ]
+},
+{
+    name: '0x601040',
+    x: 913,
+    y: 786,
+    block: 'printf',
+    assemblyCode: `
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '0x400420',
+    x: 162,
+    y: 170,
+    block: '.__libc_start_main',
+    assemblyCode: `
+    jmp     cs:off_601020
+    `,
+    successors: [
+        "0x601048"
+    ]
+},
+{
+    name: '0x601048',
+    x: 110,
+    y: 716,
+    block: '__libc_start_main',
+    assemblyCode: `
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '0x400430',
+    x: 335,
+    y: 162,
+    block: '.__gmon_start__',
+    assemblyCode: `
+    jmp     cs:off_601028
+    `,
+    successors: [
+        "0x601050"
+    ]
+},
+{
+    name: '0x601050',
+    x: 855,
+    y: 373,
+    block: '__gmon_start__',
+    assemblyCode: `
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '0x400440',
+    x: 974,
+    y: 508,
+    block: '_start',
+    assemblyCode: `
+    xor     ebp, ebp
+    mov     r9, rdx; rtld_fini
+    pop     rsi; argc
+    mov     rdx, rsp; ubp_av
+    and     rsp, 0FFFFFFFFFFFFFFF0h
+    push    rax
+    push    rsp; stack_end
+    mov     r8, offset __libc_csu_fini; fini
+    mov     rcx, offset __libc_csu_init; init
+    mov     rdi, offset main; main
+    call    ___libc_start_main
+    hlt
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '0x400470',
+    x: 545,
+    y: 178,
+    block: 'deregister_tm_clones',
+    assemblyCode: `
+    mov     eax, 60103Fh
+    push    rbp
+    sub     rax, offset _end
+    cmp     rax, 0Eh
+    mov     rbp, rsp
+    ja      short loc_400487
+    `,
+    successors: [
+        "0x400485",
+        "0x400487"
+    ]
+},
+{
+    name: '0x400485',
+    x: 459,
+    y: 754,
+    block: '',
+    assemblyCode: `
+    pop     rbp
+    retn
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '0x400487',
+    x: 92,
+    y: 326,
+    block: '',
+    assemblyCode: `
+    mov     eax, 0
+    test    rax, rax
+    jz      short loc_400485
+    `,
+    successors: [
+        "0x400485",
+        "0x400491"
+    ]
+},
+{
+    name: '0x400491',
+    x: 301,
+    y: 84,
+    block: '',
+    assemblyCode: `
+    pop     rbp
+    mov     edi, offset _end
+    jmp     rax
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '0x4004a0',
+    x: 828,
+    y: 55,
+    block: 'register_tm_clones',
+    assemblyCode: `
+    mov     eax, offset _end
+    push    rbp
+    sub     rax, offset _end
+    sar     rax, 3
+    mov     rbp, rsp
+    mov     rdx, rax
+    shr     rdx, 3Fh
+    add     rax, rdx
+    sar     rax, 1
+    jnz     short loc_4004C4
+    `,
+    successors: [
+        "0x4004c2",
+        "0x4004c4"
+    ]
+},
+{
+    name: '0x4004c2',
+    x: 263,
+    y: 402,
+    block: '',
+    assemblyCode: `
+    pop     rbp
+    retn
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '0x4004c4',
+    x: 545,
+    y: 293,
+    block: '',
+    assemblyCode: `
+    mov     edx, 0
+    test    rdx, rdx
+    jz      short loc_4004C2
+    `,
+    successors: [
+        "0x4004c2",
+        "0x4004ce"
+    ]
+},
+{
+    name: '0x4004ce',
+    x: 321,
+    y: 554,
+    block: '',
+    assemblyCode: `
+    pop     rbp
+    mov     rsi, rax
+    mov     edi, offset _end
+    jmp     rdx
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '0x4004e0',
+    x: 151,
+    y: 577,
+    block: '__do_global_dtors_aux',
+    assemblyCode: `
+    cmp     cs:__bss_start, 0
+    jnz     short locret_4004FA
+    `,
+    successors: [
+        "0x4004e9",
+        "0x4004fa"
+    ]
+},
+{
+    name: '0x4004e9',
+    x: 302,
+    y: 987,
+    block: '',
+    assemblyCode: `
+    push    rbp
+    mov     rbp, rsp
+    call    deregister_tm_clones
+    pop     rbp
+    mov     cs:__bss_start, 1
+    `,
+    successors: [
+        "0x4004fa"
+    ]
+},
+{
+    name: '0x4004fa',
+    x: 489,
+    y: 861,
+    block: '',
+    assemblyCode: `
+    rep retn
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '0x400500',
+    x: 991,
+    y: 704,
+    block: 'frame_dummy',
+    assemblyCode: `
+    cmp     cs:__JCR_LIST__, 0
+    jz      short loc_400528
+    `,
+    successors: [
+        "0x40050a",
+        "0x400528"
+    ]
+},
+{
+    name: '0x40050a',
+    x: 586,
+    y: 992,
+    block: '',
+    assemblyCode: `
+    mov     eax, 0
+    test    rax, rax
+    jz      short loc_400528
+    `,
+    successors: [
+        "0x400514",
+        "0x400528"
+    ]
+},
+{
+    name: '0x400514',
+    x: 640,
+    y: 315,
+    block: '',
+    assemblyCode: `
+    push    rbp
+    mov     edi, offset __JCR_LIST__
+    mov     rbp, rsp
+    call    rax
+    pop     rbp
+    jmp     register_tm_clones
+    `,
+    successors: [
+        "0x4004a0"
+    ]
+},
+{
+    name: '0x400528',
+    x: 705,
+    y: 613,
+    block: '',
+    assemblyCode: `
+    jmp     register_tm_clones
+    `,
+    successors: [
+        "0x4004a0"
+    ]
+},
+{
+    name: '',
+    x: 142,
+    y: 171,
+    block: '',
+    assemblyCode: `
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '0x40052d',
+    x: 511,
+    y: 188,
+    block: 'func1',
+    assemblyCode: `
+    push    rbp
+    mov     rbp, rsp
+    sub     rsp, 10h
+    mov     [rbp+var_4], 1
+    mov     [rbp+var_8], 1
+    mov     eax, [rbp+var_8]
+    mov     edx, [rbp+var_4]
+    add     eax, edx
+    mov     [rbp+var_C], eax
+    mov     eax, [rbp+var_C]
+    mov     esi, eax
+    mov     edi, offset format; "%d\n"
+    mov     eax, 0
+    call    _printf
+    leave
+    retn
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '0x400564',
+    x: 336,
+    y: 365,
+    block: 'func2',
+    assemblyCode: `
+    push    rbp
+    mov     rbp, rsp
+    mov     eax, 0
+    call    func1
+    pop     rbp
+    retn
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '0x400574',
+    x: 543,
+    y: 847,
+    block: 'func3',
+    assemblyCode: `
+    push    rbp
+    mov     rbp, rsp
+    mov     eax, 0
+    call    func2
+    pop     rbp
+    retn
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '0x400584',
+    x: 319,
+    y: 422,
+    block: 'main',
+    assemblyCode: `
+    push    rbp
+    mov     rbp, rsp
+    mov     eax, 0
+    call    func3
+    mov     eax, 0
+    pop     rbp
+    retn
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '0x4005a0',
+    x: 693,
+    y: 665,
+    block: '__libc_csu_init',
+    assemblyCode: `
+    push    r15
+    mov     r15d, edi
+    push    r14
+    mov     r14, rsi
+    push    r13
+    mov     r13, rdx
+    push    r12
+    lea     r12, __frame_dummy_init_array_entry
+    push    rbp
+    lea     rbp, __do_global_dtors_aux_fini_array_entry
+    push    rbx
+    sub     rbp, r12
+    xor     ebx, ebx
+    sar     rbp, 3
+    sub     rsp, 8
+    call    _init_proc
+    test    rbp, rbp
+    jz      short loc_4005F6
+    `,
+    successors: [
+        "0x4005d8",
+        "0x4005f6"
+    ]
+},
+{
+    name: '0x4005d8',
+    x: 339,
+    y: 178,
+    block: '',
+    assemblyCode: `
+    nop     dword ptr [rax+rax+00000000h]
+    `,
+    successors: [
+        "0x4005e0"
+    ]
+},
+{
+    name: '0x4005e0',
+    x: 743,
+    y: 994,
+    block: '',
+    assemblyCode: `
+    mov     rdx, r13
+    mov     rsi, r14
+    mov     edi, r15d
+    call    ds:(__frame_dummy_init_array_entry - 600E10h)[r12+rbx*8]
+    add     rbx, 1
+    cmp     rbx, rbp
+    jnz     short loc_4005E0
+    `,
+    successors: [
+        "0x4005f6",
+        "0x4005e0"
+    ]
+},
+{
+    name: '0x4005f6',
+    x: 115,
+    y: 542,
+    block: '',
+    assemblyCode: `
+    add     rsp, 8
+    pop     rbx
+    pop     rbp
+    pop     r12
+    pop     r13
+    pop     r14
+    pop     r15
+    retn
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '0x400610',
+    x: 528,
+    y: 33,
+    block: '__libc_csu_fini',
+    assemblyCode: `
+    rep retn
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '0x400614',
+    x: 1000,
+    y: 289,
+    block: '.term_proc',
+    assemblyCode: `
+    sub     rsp, 8; _fini
+    add     rsp, 8
+    retn
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '',
+    x: 662,
+    y: 632,
+    block: '',
+    assemblyCode: `
+    extrn printf:near
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '',
+    x: 743,
+    y: 607,
+    block: '',
+    assemblyCode: `
+    extrn __libc_start_main:near
+    `,
+    successors: [
+
+    ]
+},
+{
+    name: '',
+    x: 851,
+    y: 549,
+    block: '',
+    assemblyCode: `
+    extrn __gmon_start__:near ; weak
+    `,
+    successors: [
+
+    ]
+}
+}

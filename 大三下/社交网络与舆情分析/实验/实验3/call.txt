@@ -1,0 +1,20 @@
+.init_proc <- __libc_csu_init, .init_proc
+sub_400400 <- 
+.printf <- func1
+.__libc_start_main <- _start
+.__gmon_start__ <- .init_proc
+_start <- 
+deregister_tm_clones <- __do_global_dtors_aux, deregister_tm_clones
+register_tm_clones <- frame_dummy, register_tm_clones
+__do_global_dtors_aux <- __do_global_dtors_aux
+frame_dummy <- __libc_csu_init, frame_dummy
+func1 <- func2
+func2 <- func3
+func3 <- main
+main <- 
+__libc_csu_init <- __libc_csu_init
+__libc_csu_fini <- 
+.term_proc <- 
+printf <- .printf
+__libc_start_main <- .__libc_start_main
+__gmon_start__ <- .__gmon_start__

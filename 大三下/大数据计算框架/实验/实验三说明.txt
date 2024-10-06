@@ -1,0 +1,3 @@
+python连接hbase我是跟着这个做的，因为用java连的时候一直报错
+https://blog.csdn.net/luanpeng825485697/article/details/81048468?spm=1001.2014.3001.5506
+另外注意开放9090端口号

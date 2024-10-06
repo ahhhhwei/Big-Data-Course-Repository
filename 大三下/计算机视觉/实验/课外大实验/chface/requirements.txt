@@ -1,0 +1,12 @@
+opencv-python==4.9.0.80
+opencv-python-headless==4.9.0.80
+opencv-contrib-python==4.9.0.80
+numpy==1.26.4
+mediapipe==0.10.1
+moviepy==1.0.3
+pillow==9.5.0
+av==11.0.0
+streamlit-camera-input-live==0.2.0
+streamlit-webrtc==0.35.1
+streamlit==1.2.0
+altair==4.2.2

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.5.0/files/dist/echarts.min.js"></script>
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+
+    var option;
+
+    // 关键词数据
+    const keywords = [
+    "人工智能","AI 大模型","通用大模型","垂直大模型",
+"ChatGPT","对话式大模型","大型语言模型","自然语言处理","通用人工智能",
+"鲁棒性","GPT 模型","大语言模型","自然语言处理","可靠性",
+"大语言模型","LLM","GPT","图书情报","AI","技术应用",
+"人工智能","自然语言处理","文本表示","语言模型",
+"自然语言处理","预训练","词向量","语言模型",
+"自然语言处理","机器阅读理解","深度学习","词向量","注意力机制",
+"自然语言处理","神经网络","大型语言模型","预训练","对齐",
+"数字人文","四库全书","预训练模型","深度学习",
+"语言模型","预训练","深度学习","自然语言处理","神经语言模型",
+"知识图谱","BERT","ERNIE","问答系统",
+"大语言模型（LLMs）","自然语言处理","深度学习","人工智能","ChatGPT",
+"人工智能","研究热点","关键词","统计分析","数据挖掘",
+"自然语言处理","深度学习","表示学习","特征学习","神经网络",
+"自然语言处理","语言模型","预训练技术","ChatGPT",
+"文本推理","事理图谱","知识图谱","预训练语言模型",
+"大语言模型","多语言智能","跨语言模型","通用人工智能","迁移学习",
+"词向量","语言模型","神经网络",
+"AI 大模型","Transformer","BERT","GPT","ERNIE",
+"机器翻译","神经机器翻译","注意力机制","循环神经网络","序列到序列模型","机器翻译评测"
+    ];
+
+    // 计算关键词词频
+    let keywordCounts = {};
+    keywords.forEach(keyword => {
+      keyword.split("，").forEach(word => {
+        word = word.trim();
+        if (word) {
+          keywordCounts[word] = (keywordCounts[word] || 0) + 1;
+        }
+      });
+    });
+
+    // 转换为ECharts所需的数据格式
+    let legendData = Object.keys(keywordCounts).sort();
+    let seriesData = legendData.map(word => ({
+      name: word,
+      value: keywordCounts[word]
+    }));
+
+    option = {
+      toolbox: {
+    show: true,
+    feature: {
+      mark: { show: true },
+      dataView: { show: true, readOnly: false },
+      restore: { show: true },
+      saveAsImage: { show: true }
+    }
+  },
+      title: {
+        text: '关键词词频统计',
+        left: 'center'
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} 次'
+      },
+      legend: {
+        type: 'scroll',
+        orient: 'vertical',
+        right: 10,
+        top: 20,
+        bottom: 20,
+        data: legendData.slice(0, 20) // 只展示前20个以适应显示，可根据需要调整
+      },
+      series: [
+        {
+          name: '关键词',
+          type: 'pie',
+          radius: '55%',
+          center: ['40%', '50%'],
+          data: seriesData.slice(0, 20), // 同样只展示前20个数据
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
+        }
+      ]
+    };
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
