@@ -1,0 +1,34 @@
+//mainTest.cpp
+#include "ex1.hpp"
+#include "ex2.hpp"
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	ex1 objA(3),objB(objA),objC(5); //ex2上自行测试
+        cout<<objA.getx()<<endl; 
+        cout<<objB.getx()<<endl;
+        objB=objA;
+        cout<<objA.getx()<<endl;
+        cout<<objB.getx()<<endl;
+        objA.setx(4);
+        objB.setx(4);
+        objC.setx(4);
+        //3,4,5;
+        objC=objB=objA; //objC=(objB=objA); 或者objC.operator=(objB.operator=(objA));cout<<objA.getx()<<endl;
+        cout<<objA.getx()<<endl;
+        cout<<objB.getx()<<endl;
+        cout<<objC.getx()<<endl;
+        
+        objA.setx(4);
+        objB.setx(4);
+        objC.setx(4);
+        (objC=objB)=objA; //objC.operator=(objB).operator=(objA)
+        cout<<objA.getx()<<endl;
+        cout<<objB.getx()<<endl;
+        cout<<objC.getx()<<endl;      
+
+
+	return  0;
+}

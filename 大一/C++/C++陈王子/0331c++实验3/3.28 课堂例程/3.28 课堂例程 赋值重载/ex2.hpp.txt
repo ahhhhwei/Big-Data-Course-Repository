@@ -1,0 +1,25 @@
+//ex2.hpp
+class ex2 {
+public:
+	ex2(int xv= 0){
+            x=new int;
+            *x=xv;
+            cout<<"Constructor "<<*x<<endl;}
+ 
+	ex2(const ex2& other){
+            x=new int;
+            *x=*(right.x);
+            cout<<"Copy Constructor "<<*x<<endl;}
+
+        ex2& operator=(const ex1& right){//注意和拷贝构造比较
+          cout<<"operator= "<<endl;
+          *x=*(right.x);
+        }
+        void setx(int xv){*x=xv;}
+        int getx(){return *x;}
+        ~ex2(){ 
+            cout<<"Bye "<<*x<<endl;  
+            delete x;}
+private:
+	int *x;
+};

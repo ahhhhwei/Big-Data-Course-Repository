@@ -1,0 +1,9 @@
+//Box.cpp
+#include "Box.hpp"
+Box::Box(int len,int w,int h):length(len),width(w),height(h)
+{  }
+
+int Box::volume()
+{
+    return length * width*height;
+}

@@ -1,0 +1,252 @@
+已知程序：
+#include <iostream>
+using namespace std;
+
+class box {
+public:
+	box(int hv = 10, int wv = 10, int lv = 10) :h(hv), w(wv), len(lv) {
+		cout << "I\'m a box:" << h << "-" << w << "-" << len << endl;
+	}
+	box(const box& other) {
+		h = other.h;
+		w = other.w;
+		len = other.len;
+		cout << "I\'m a copy box:" << h << "-" << w << ":" << len << endl;
+	}
+	void reset() {
+		h = 10;
+		w = 10;
+		len = 10;
+	}
+
+	~box() {
+		cout << "A box says: Bye-bye." << h << "-" << w << "-" << len << endl;
+	}
+private:
+	int h, w, len;
+};
+
+class Clock {
+public:
+	Clock(int hv = 1, int mv = 1, int sv = 1) :h(hv), m(mv), s(sv) {
+		cout << "I\'m a clock:" << h << ":" << m << ":" << s << endl;
+	}
+	Clock(const Clock& other) {
+		h = other.h;
+		m = other.m;
+		s = other.s;
+		cout << "I\'m a copy clock:" << h << ":" << m << ":" << s << endl;
+	}
+	void reset() {
+		h = 0;
+		m = 0;
+		s = 0;
+	}
+	~Clock() {
+		cout << "A clock says: Bye-bye." << h << ":" << m << ":" << s << endl;
+	}
+private:
+	int h, m, s;
+};
+
+
+class Demo {
+public:
+	Demo(int xv = 0, int hv = 0, int mv = 0, int sv = 0) :x(xv, mv, sv), y(hv, mv, sv) {
+		cout << "Demo-Constructor1." << endl;
+	}
+	Demo(const box& abox, const Clock& aclock) :y(aclock), x(abox) {
+		cout << "Demo-Constructor2." << endl;
+	}
+	Demo(const Demo& other) {
+		cout << "Demo-Copy Constructor." << endl;
+	}
+	Clock getclock() { return y; }
+	box getbox() { return x; }
+	~Demo() {
+		cout << "Demo-Destructor." << endl;
+	}
+public:
+	box x;
+	Clock y;
+};
+
+void fun1(Clock xclock) {
+	xclock.reset();
+}
+Demo fun2(Demo xDemo) {
+	xDemo.getclock().reset();
+	return xDemo;
+}
+int main()
+{
+	Clock  aclock(8, 34, 45), bclock(aclock);
+	box  abox, bbox(20, 30);
+	Demo ademo(1, 2, 3, 4), bdemo(ademo), cdemo(abox, aclock), ddemo(3, 4);
+	Clock* pclock;
+	box* pbox;
+	Demo* pDemo;
+	pclock = new Clock(6, 7, 8);
+	pbox = new box(cdemo.getbox());
+	pDemo = new Demo[2]{ Demo(6,7,8,9),Demo(bbox,bclock) };
+	fun1(*pclock);
+	fun2(pDemo[1]);
+	delete pclock;
+	delete[]pDemo;
+	delete pbox;
+	return 0;
+}
+
+
+
+
+
+我理解的程序运行的结果：
+I\'m a clock:8:34:45
+I\'m a copy clock:8:34:45
+I\'m a box:10-10-10
+I\'m a box:20-30-10//传入参数个数少于设置参数个数则从前往后覆盖
+I\'m a box:1-3-4//因为demo的数据包含类类型因此调用了构造函数
+I\'m a clock:2:3:4
+Demo-Constructor1.
+I\'m a box:10-10-10//
+I\'m a clock:1:1:1//因为构造demo类bdemo的时候其实用的是拷贝构造函数的缺省形式，因此clock和box使用默认参数
+Demo-Copy Constructor.
+I'm a copy box:10-10:10//abox和aclock都分别调用了拷贝构造函数
+I'm a copy clock:8:34:45//按照数据成员的申明顺序来构造
+Demo-Constructor2.
+I\'m a box:3-0-0
+I\'m a clock:4:0:0//因为调用了构造函数并且传入了部分参数
+Demo-Constructor1.
+I\'m a clock:6:7:8
+I\'m a copy box:10-10-10
+I\'m a box:6–8-9
+I\'m a clock:7:8:9
+Demo-Constructor1.
+I\'m a box:20-30-10//虽然构造的顺序是clock->box
+I\'m a clock:8:34:45//但是构造的顺序由数据成员的申明顺序决定
+Demo-Constructor2.
+I'm a copy clock:6:7:8
+//因为pclock指针解指针的对象数据为6，7，8
+//将一个对象作为函数的参数按值调用方式传递给另一个对象时会生成对象副本
+//且此对象副本是按照传入的对象经过拷贝构造函数进行创建的
+A clock says: Bye-bye.0:0:0//reset使参数都变成0以后自动销毁
+I\'m a box:10-10-10
+I\'m a clock:1:1:1//与上面的clock不同的是，clock的拷贝构造函数有赋值语句，而demo里面的拷贝构造函数（传入参数为demo）是系统内自带的缺省的拷贝构造函数，因此box和clock都按照本身无参的构造函数来处理。
+Demo-Copy Constructor.//
+I\'m a copy clock:1:1:1//因为demo类中getclock函数返回值为clock类（即return y），要调用clock的拷贝构造函数，且y即为xdemo的clock数据
+A clock says: Bye-bye.0:0:0//return完成以后马上析构，又前面已经reset过，因此析构的时候数据均为0
+I'm a box:10-10-10
+I'm a clock:1:1:1
+Demo-Copy Constructor.//return的时候又需要调用demo类的拷贝构造函数，系统内自带的缺省的拷贝构造函数，因此box和clock都按照本身无参的构造函数来处理。
+Demo-Destructor.//Q1：？为什么不是先析构clock和box再输出Demo-Destructor.
+A clock says: Bye-bye.1:1:1
+A box says: Bye-bye.10-10-10
+Demo-Destructor.
+A clock says: Bye-bye.1:1:1
+A box says: Bye-bye.10-10-10
+//这里两组析构分别对应return时候的拷贝构造的析构和传入实参时候生成的临时副本的析构
+A clock says: Bye-bye.1:1:1//对应pclock指针new出来的对象
+Demo-Destructor.
+A clock says: Bye-bye.8:34:45
+A box says: Bye-bye.20-30-10
+Demo-Destructor.
+A clock says: Bye-bye.7:8:9
+A box says: Bye-bye.6-8-9
+//这里两组demo的析构对应pdemo指针所对应的数组
+//并且先new的pdemo[0]再new的pdemo[1]，因此先析构【1】再析构【0】
+A box says: Bye-bye.10-10-10//析构掉pbox
+Demo-Destructor.
+A clock says: Bye-bye.4:0:0
+A box says: Bye-bye.3-0-0//析构掉ddemo(3, 4)
+Demo-Destructor.
+A clock says: Bye-bye.8:34:45
+A box says: Bye-bye.10-10-10//析构掉cdemo(abox, aclock)
+Demo-Destructor.
+A clock says: Bye-bye.1:1:1
+A box says: Bye-bye.10-10-10//析构掉bdemo(ademo)
+Demo-Destructor.
+A clock says: Bye-bye.2:3:4
+A box says: Bye-bye.1-3-4//析构掉ademo(1,2,3,4)
+A box says: Bye-bye.20-30-10//析构掉bbox
+A box says: Bye-bye.10-10-10//析构掉abox
+A clock says: Bye-bye.8:34:45//析构掉bclock
+A clock says: Bye-bye.8:34:45//析构掉aclock
+
+
+根据以下运行结果，回答问题：
+1.给出程序中所有与 cdemo 这个对象相关的输出。
+2.给出和指针pDemo相关的输出。
+
+I\'m a clock:8:34:45
+I\'m a copy clock:8:34:45
+I\'m a box:10-10-10
+I\'m a box:20-30-10//传入参数个数少于设置参数个数则从前往后覆盖
+I\'m a box:1-3-4//因为demo的数据包含类类型因此调用了构造函数
+I\'m a clock:2:3:4
+Demo-Constructor1.
+I\'m a box:10-10-10//
+I\'m a clock:1:1:1//因为构造demo类bdemo的时候其实用的是拷贝构造函数的缺省形式，因此clock和box使用默认参数
+Demo-Copy Constructor.
+I'm a copy box:10-10:10//abox和aclock都分别调用了拷贝构造函数
+I'm a copy clock:8:34:45//按照数据成员的申明顺序来构造
+Demo-Constructor2.
+I\'m a box:3-0-0
+I\'m a clock:4:0:0//因为调用了构造函数并且传入了部分参数
+Demo-Constructor1.
+I\'m a clock:6:7:8
+I\'m a copy box:10-10-10
+I\'m a box:6–8-9
+I\'m a clock:7:8:9
+Demo-Constructor1.
+I\'m a box:20-30-10//虽然构造的顺序是clock->box
+I\'m a clock:8:34:45//但是构造的顺序由数据成员的申明顺序决定
+Demo-Constructor2.
+I'm a copy clock:6:7:8
+//因为pclock指针解指针的对象数据为6，7，8
+//将一个对象作为函数的参数按值调用方式传递给另一个对象时会生成对象副本
+//且此对象副本是按照传入的对象经过拷贝构造函数进行创建的
+A clock says: Bye-bye.0:0:0//reset使参数都变成0以后自动销毁
+I\'m a box:10-10-10
+I\'m a clock:1:1:1//与上面的clock不同的是，clock的拷贝构造函数有赋值语句，而demo里面的拷贝构造函数（传入参数为demo）是系统内自带的缺省的拷贝构造函数，因此box和clock都按照本身无参的构造函数来处理。
+Demo-Copy Constructor.//
+I\'m a copy clock:1:1:1//因为demo类中getclock函数返回值为clock类（即return y），要调用clock的拷贝构造函数，且y即为xdemo的clock数据
+A clock says: Bye-bye.0:0:0//return完成以后马上析构，又前面已经reset过，因此析构的时候数据均为0
+I'm a box:10-10-10
+I'm a clock:1:1:1
+Demo-Copy Constructor.//return的时候又需要调用demo类的拷贝构造函数，系统内自带的缺省的拷贝构造函数，因此box和clock都按照本身无参的构造函数来处理。
+Demo-Destructor.//Q1：？为什么不是先析构clock和box再输出Demo-Destructor.
+A clock says: Bye-bye.1:1:1
+A box says: Bye-bye.10-10-10
+Demo-Destructor.
+A clock says: Bye-bye.1:1:1
+A box says: Bye-bye.10-10-10
+//这里两组析构分别对应return时候的拷贝构造的析构和传入实参时候生成的临时副本的析构
+A clock says: Bye-bye.1:1:1//对应pclock指针new出来的对象
+Demo-Destructor.
+A clock says: Bye-bye.8:34:45
+A box says: Bye-bye.20-30-10
+Demo-Destructor.
+A clock says: Bye-bye.7:8:9
+A box says: Bye-bye.6-8-9
+//这里两组demo的析构对应pdemo指针所对应的数组
+//并且先new的pdemo[0]再new的pdemo[1]，因此先析构[1]再析构[0]
+A box says: Bye-bye.10-10-10//析构掉pbox
+Demo-Destructor.
+A clock says: Bye-bye.4:0:0
+A box says: Bye-bye.3-0-0//析构掉ddemo(3, 4)
+Demo-Destructor.
+A clock says: Bye-bye.8:34:45
+A box says: Bye-bye.10-10-10//析构掉cdemo(abox, aclock)
+Demo-Destructor.
+A clock says: Bye-bye.1:1:1
+A box says: Bye-bye.10-10-10//析构掉bdemo(ademo)
+Demo-Destructor.
+A clock says: Bye-bye.2:3:4
+A box says: Bye-bye.1-3-4//析构掉ademo(1,2,3,4)
+A box says: Bye-bye.20-30-10//析构掉bbox
+A box says: Bye-bye.10-10-10//析构掉abox
+A clock says: Bye-bye.8:34:45//析构掉bclock
+A clock says: Bye-bye.8:34:45//析构掉aclock
+
+

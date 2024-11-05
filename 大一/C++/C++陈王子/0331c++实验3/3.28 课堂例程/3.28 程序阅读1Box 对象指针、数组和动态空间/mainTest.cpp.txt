@@ -1,0 +1,19 @@
+//mainTest.cpp
+#include "Box.hpp"
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	Box *p=new Box[3]{Box(12,2,3),Box(11,3)};
+	Box *q=new Box[2]{Box(13,1,1),Box(14,2,2)};
+        p[0].setl(1);
+        p[1].setl(2);
+        p[2].setl(3);
+	Box *t=q; q=p; p=t;
+	delete []p;
+        q[0].setl(4);
+        q[1].setl(5);
+	delete[]q;
+	return  0;
+}

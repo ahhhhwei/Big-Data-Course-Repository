@@ -1,0 +1,18 @@
+//mainTest.cpp
+#include "Box.hpp"
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	Box a, b(2,30), c[3] = { Box(3,2,3),Box(4) };
+	Box  *pt1, *pt2;
+	pt1 = new Box(6);
+	pt2 = new Box[2]{ Box(7,3)};
+	cout << a.volume() << " "<< b.volume() <<" " << c[1].volume() << endl;
+	cout << pt1->volume() << endl;
+	cout << pt2[0].volume() << endl;
+	delete pt1;
+	delete[]pt2;
+	return  0;
+}

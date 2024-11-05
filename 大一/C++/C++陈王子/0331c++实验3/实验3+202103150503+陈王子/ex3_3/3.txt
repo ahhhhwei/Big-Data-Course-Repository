@@ -1,0 +1,16 @@
+3、类的可缺省成员：Student（30分）
+    要求理解类的可缺省部分，以及缺省部分的适用情况。对于有派生数据的类要学会自己重写可缺省部分的操作。
+	实验要求： 实现两种不同的student类(见ex3_3_student文件夹中的Student_A,Student_B), 并使用提供的主程进行测试。
+   主程见：StudentApp.cpp, 请装配Student_A的项目并运行观察结果；
+然后完成student2.cpp,同样装配项目并观察运行结果，两者的结果是否一致？
+   输出结果应该为：
+stu1:
+stu2:Jennie Mao
+stu3:Jennie Mao
+stu4:John Smith
+stu1:John Smith
+stu1:Peter
+stu3:Tom
+	实验提交：
+提交完善后的Student_A 和 Student_B
+

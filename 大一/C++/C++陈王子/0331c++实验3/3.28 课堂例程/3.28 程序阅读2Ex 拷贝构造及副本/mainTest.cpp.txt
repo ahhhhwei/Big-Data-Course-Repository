@@ -1,0 +1,45 @@
+//mainTest.cpp
+#include "ex1.hpp"
+#include<iostream>
+using namespace std;
+ex1 f1(ex1 xobj){
+   cout<<xobj.getx()<<endl;
+   xobj.setx(5);
+   return xobj;
+}
+//注意和以下函数比较
+ex1 f2(ex1& xobj){
+   cout<<xobj.getx()<<endl;
+   xobj.setx(5);
+   return xobj;
+}
+ex1& f3(ex1 xobj){
+   cout<<xobj.getx()<<endl;
+   xobj.setx(5);
+   return xobj;
+}
+
+ex1& f4(ex1& xobj){
+   cout<<xobj.getx()<<endl;
+   xobj.setx(5);
+   return xobj;
+}
+int main()
+{
+	ex1 objA(3),objB(objA);
+        cout<<objA.getx()<<endl;
+        cout<<objB.getx()<<endl;
+        
+        cout<<f1(objB).getx()<<endl;
+        cout<<objB.getx()<<endl;
+        
+        cout<<f2(objB).getx()<<endl;
+        cout<<objB.getx()<<endl;
+        
+        cout<<f3(objB).getx()<<endl;
+        cout<<objB.getx()<<endl;
+
+        f4(objB).setx(6);
+        cout<<objB.getx()<<endl;
+	return  0;
+}

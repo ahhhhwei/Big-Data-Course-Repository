@@ -1,0 +1,14 @@
+//ex1.hpp
+class ex1 {
+public:
+	ex1(int = 0){
+            cout<<"Constructor "<<x<<endl;}
+ 
+	ex1(const ex1& other){
+            cout<<"Copy Constructor "<<x<<endl;}
+        void setx(int xv){x=xv;}
+        int getx(){return x;}
+        ~ex1(){ cout<<"Bye "<<x<<endl; }
+private:
+	int x;
+};

@@ -1,0 +1,68 @@
+I'm a clock:8:34:45
+I'm a copy clock:8:34:45
+I'm a box:10-10-10
+I'm a box:20-30-10
+I'm a box:1-3-4
+I'm a clock:2:3:4
+Demo-Constructor1.
+I'm a box:10-10-10
+I'm a clock:1:1:1
+Demo-Copy Constructor.
+I'm a copy box:10-10:10
+I'm a copy clock:8:34:45
+Demo-Constructor2.
+I'm a box:3-0-0
+I'm a clock:4:0:0
+Demo-Constructor1.
+I'm a clock:6:7:8
+I'm a copy box:10-10:10
+I'm a box:6-8-9
+I'm a clock:7:8:9
+Demo-Constructor1.
+I'm a copy box:20-30:10
+I'm a copy clock:8:34:45
+Demo-Constructor2.
+I'm a copy clock:6:7:8
+A clock says: Bye-bye.0:0:0
+I'm a box:10-10-10
+I'm a clock:1:1:1
+Demo-Copy Constructor.
+I'm a copy clock:1:1:1
+A clock says: Bye-bye.0:0:0
+I'm a box:10-10-10
+I'm a clock:1:1:1
+Demo-Copy Constructor.
+Demo-Destructor.
+A clock says: Bye-bye.1:1:1
+A box says: Bye-bye.10-10-10
+Demo-Destructor.
+A clock says: Bye-bye.1:1:1
+A box says: Bye-bye.10-10-10
+A clock says: Bye-bye.6:7:8
+Demo-Destructor.
+A clock says: Bye-bye.8:34:45
+A box says: Bye-bye.20-30-10
+Demo-Destructor.
+A clock says: Bye-bye.7:8:9
+A box says: Bye-bye.6-8-9
+A box says: Bye-bye.10-10-10
+Demo-Destructor.
+A clock says: Bye-bye.4:0:0
+A box says: Bye-bye.3-0-0
+Demo-Destructor.
+A clock says: Bye-bye.8:34:45
+A box says: Bye-bye.10-10-10
+Demo-Destructor.
+A clock says: Bye-bye.1:1:1
+A box says: Bye-bye.10-10-10
+Demo-Destructor.
+A clock says: Bye-bye.2:3:4
+A box says: Bye-bye.1-3-4
+A box says: Bye-bye.20-30-10
+A box says: Bye-bye.10-10-10
+A clock says: Bye-bye.8:34:45
+A clock says: Bye-bye.8:34:45
+
+C:\Users\DaiW\source\repos\ConsoleApplication1\Debug\ConsoleApplication1.exe (进
+程 3632)已退出，返回代码为: 0。
+按任意键关闭此窗口...

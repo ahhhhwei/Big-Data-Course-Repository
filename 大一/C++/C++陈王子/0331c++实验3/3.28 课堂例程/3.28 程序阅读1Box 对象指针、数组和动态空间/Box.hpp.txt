@@ -1,0 +1,11 @@
+//Box.hpp
+class Box {
+public:
+	Box(int = 10, int = 10, int = 10);
+	int volume();//计算体积
+        void setl(int l);
+private:
+	int length;//长
+	int width;//宽
+	int height;//高
+};
