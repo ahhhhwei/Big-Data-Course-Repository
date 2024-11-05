@@ -1,0 +1,40 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: LMS - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\³¿½Ü\AppData\Local\Temp\RSPC262.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/LMS.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\Users\³¿½Ü\Documents\Tencent Files\309272985\FileRecv\LMS\main.cpp"
+]
+Creating command line "cl.exe @"C:\Users\³¿½Ü\AppData\Local\Temp\RSPC262.tmp"" 
+Creating temporary file "C:\Users\³¿½Ü\AppData\Local\Temp\RSPC263.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/LMS.pdb" /debug /machine:I386 /out:"Debug/LMS.exe" /pdbtype:sept 
+".\Debug\book.obj"
+".\Debug\booklist.obj"
+".\Debug\main.obj"
+".\Debug\manager.obj"
+".\Debug\managerlist.obj"
+".\Debug\reader.obj"
+".\Debug\readerlist.obj"
+".\Debug\worker.obj"
+".\Debug\workerlist.obj"
+]
+Creating command line "link.exe @"C:\Users\³¿½Ü\AppData\Local\Temp\RSPC263.tmp""
+<h3>Output Window</h3>
+Compiling...
+main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+LMS.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

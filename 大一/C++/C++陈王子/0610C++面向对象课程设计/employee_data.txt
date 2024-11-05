@@ -1,0 +1,9 @@
+id：113431
+name:张三
+age:34
+edu:本科
+nation:中国
+major:数据科学
+title:AssistantEngineer
+dpt:PersonnelDepartment
+jobTitle:OrdinaryEmployee
