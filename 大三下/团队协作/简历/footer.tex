@@ -1,0 +1,25 @@
+\begin{tikzpicture}[remember picture, overlay]
+  \node[
+    anchor = north,
+    fill=ICBlue,
+    draw=none,
+    minimum width=\paperwidth,
+    minimum height=1em,
+    align=center,
+    font=\footnotesize,
+    text=white
+  ] at (current page.north) {};
+\end{tikzpicture}
+
+\begin{tikzpicture}[remember picture, overlay] 
+  \node[
+    anchor = south,
+    fill=ICBlue,
+    draw=none,
+    minimum width=\paperwidth,
+    minimum height=1em,
+    align=center,
+    font=\footnotesize,
+    text=white
+  ] at ($(current page.south)$) {};
+\end{tikzpicture}

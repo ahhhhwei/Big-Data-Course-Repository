@@ -1,0 +1,46 @@
+\documentclass{setting}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+
+\begin{document}
+\pagenumbering{gobble} % suppress displaying page number
+
+%%%% 利用tikz来定位照片
+\begin{tikzpicture}[remember picture, overlay]
+  \node[
+    anchor=north east,
+    % draw,
+    % line width=1pt,
+    % color=blue!50!black
+  ] at ($(current page.north east)+(-2cm,-2cm)$) 
+  {\includegraphics[height=3.5cm]{ahwei}};
+\end{tikzpicture}%
+
+%%%% 利用tikz来定位二维码
+\begin{tikzpicture}[remember picture, overlay]
+  \node[
+    anchor=north west,
+    % draw,
+    % line width=1pt,
+    % color=blue!50!black
+  ] at ($(current page.north west)+(5.1cm,-4cm)$) 
+  {\includegraphics[height=1.6cm]{code}};
+\end{tikzpicture}%
+
+\name{ahwei}
+\faGithub { \url{https://github.com/ahhhhwei} } \\
+\faEnvelope { ahhhhwei@qq.com } \\
+\faPhone { 19858180826 } \\
+% \begin{adjustbox}{valign=t, height=1.4em}
+%   \includegraphics[height=1.2em]{weixin.pdf}
+%   \raisebox{0.4em}{\scalebox{0.7}{\_520wjw}}
+% \end{adjustbox}%
+\faWeixin { \_520wjw }
+
+\input{body}
+%延长了页面长度
+%\enlargethispage{0.3\baselineskip}
+\input{footer}
+\end{document}
+
+
