@@ -45,7 +45,7 @@ CREATE TABLE wenjw_SC0 (
 ```
 
 ```sql
-use wenjw_db;
+use wenjw_db1;
 CREATE TABLE wenjw_Stu1 (
     Sno INT PRIMARY KEY,
     Sname VARCHAR(100),
